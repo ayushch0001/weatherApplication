@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather App</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+/* Your existing styles here */
+style>body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	border-bottom-width: thick; display : flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	background-color: #f1f1f1;
+	display: flex;
+}
+
+.heading {
+	font-size: 2rem;
+	margin-bottom: 1rem;
+}
+
+.main-content {
+	font-size: 1.2rem;
+}
+
+@media screen and (max-width: 768px) {
+	.heading {
+		font-size: 1.5rem;
+	}
+	.main-content {
+		font-size: 1rem;
+	}
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Weather App</h1>
+		<img
+			src="https://img.freepik.com/free-photo/3d-render-weather-app-icons-interface-elements_107791-17422.jpg?w=1380&t=st=1690541221~exp=1690541821~hmac=e0540efad2094a095cf3985ad5c1df5e8482a0cbd46d84c3d9e2cbea8d75ccf9"
+			width="600" height="300" />
+
+		<div class="main-content">
+			<form id="weatherForm" action="/weather/data" method="post">
+				<input type="text" name="city" placeholder="Enter city name">
+				<select name="unit">
+					<option value="F">Fahrenheit</option>
+					<option value="C">Celsius</option>
+				</select>
+				<button type="submit">Get Weather</button>
+			</form>
+			<h3>Weather Data:</h3>
+			<div id="weatherDataContainer">
+
+				<table id="weatherDataTable">
+					<!-- Weather data will be dynamically inserted here -->
+					<tr th:each="entry : ${weatherData}">
+						<td th:text="${entry.key}"></td>
+						<td th:text="${entry.value}"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
+
+
+
+
